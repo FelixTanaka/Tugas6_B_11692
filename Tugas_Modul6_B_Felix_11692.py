@@ -63,8 +63,8 @@ if st.sidebar.button("Prediksi"):
 
             # Label and progress bar
             if label != "Error":
+                primary_color = "#FF4136"
                 secondary_color = "#007BFF"  # Red for "Mentah"
-                primary_color = "#FF4136"  # Blue for "Matang"
                 label_color = primary_color if label == "Matang" else secondary_color
 
                 # Display prediction results
