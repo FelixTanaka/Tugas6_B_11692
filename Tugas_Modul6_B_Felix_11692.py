@@ -4,9 +4,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from PIL import Image
 
-# Load the pre-trained model
-# (Sesuai dengan path model Anda (model terbaik yang di dump dalam format .h5))
-model = r'model_mobilenet.h5'
+model = tf.keras.models.load_model(r'model_mobilenet.h5')
 class_names = ["Matang", "Mentah"]
 
 # Function to preprocess and classify image
@@ -15,7 +13,7 @@ def classify_image(image_path):
         # Load and preprocess the image
         input_image = tf.keras.utils.load_img(image_path, target_size=(180, 180))
         input_image_array = tf.keras.utils.img_to_array(input_image)
-        input_image_exp_dim= tf.expand_dims(input_image_array, 0)
+        input_image_exp_dim = tf.expand_dims(input_image_array, 0)
 
         # Predict using the model
         predictions = model.predict(input_image_exp_dim)
@@ -76,10 +74,10 @@ if st.sidebar.button("Prediksi"):
                 for i, class_name in enumerate(class_names):
                     st.sidebar.write(f"- {class_name}: {confidence[i] * 100:.2f}%")
 
-                    # Display custom progress bar
-                    custom_progress_bar(confidence, primary_color, secondary_color)
+                # Display custom progress bar
+                custom_progress_bar(confidence, primary_color, secondary_color)
 
-                    st.sidebar.write("---")
+                st.sidebar.write("---")
             else:
                 st.sidebar.error(f"Kesalahan saat memproses gambar {uploaded_file.name}: {confidence}")    
             
