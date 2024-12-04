@@ -80,6 +80,8 @@ if st.sidebar.button("Prediksi"):
                     custom_progress_bar(confidence, primary_color, secondary_color)
 
                     st.sidebar.write("---")
+            else:
+                st.sidebar.error(f"Kesalahan saat memproses gambar {uploaded_file.name}: {confidence}")    
             
     else:
         st.sidebar.error("Silakan unggah setidaknya satu gambar untuk diprediksi.")
